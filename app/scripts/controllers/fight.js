@@ -20,7 +20,7 @@ angular.module('mathLandAppApp')
   var _playerLoss = false;
   var _playerWin = false;
 
-	$scope.variables = {}
+	$scope.variables = {};
 	$scope.monsterHP = 10;
 	$scope.timer = 0;
   $scope.answer = null;
@@ -45,13 +45,20 @@ angular.module('mathLandAppApp')
 				var x = $scope.variables.x;
 				$scope.variables.x = x * $scope.variables.y;
 				_answer = x;
-				break
+				break;
 		}
-		_answerCorrect = null;
+		//_answerCorrect = null;
 		$scope.answer = null;
 	}
 
 	angular.extend($scope, {
+    recharge: function() {
+      _player.hp = _player.hp - 3;
+      this.startGame();
+    },
+    getPlayerHP: function() {
+      return _player.hp;
+    },
 		isAnswer: function (){
 			return _answerCorrect === true;
 		},
@@ -66,7 +73,11 @@ angular.module('mathLandAppApp')
 			_end = false;
       _playerLoss = false;
       _playerWin = false;
-      this.monsterHP = 10;
+      if (this.monsterHP == 0) {
+        this.monsterHP = 10;
+      } else if (this.monsterHP != 10) {
+        this.monsterHP += 3;
+      }
 			$scope.correct = 0;
 			$scope.wrong = 0;
 			$scope.timer = 0;
@@ -80,27 +91,23 @@ angular.module('mathLandAppApp')
 		},
 		increaseTimer: function(){
 			$scope.timer++;
-			if($scope.timer == 60 || _playerLoss || _playerWin){
+			if($scope.timer === 60 || _playerLoss || _playerWin){
 				_end = true;
 			} else {
 				$timeout($scope.increaseTimer, 1000);
 			}
 		},
 		checkAnswer: function(){
-			_answerCorrect = parseInt(this.answer) == _answer;
+			_answerCorrect = parseInt(this.answer) === _answer;
 			if(_answerCorrect) {
-        console.log("answer Correct");
 				this.monsterHP--;
-        _player.xp++
-				_initialize()
+        _player.xp++;
+				_initialize();
         this.answer = null;
 			}else{
-        console.log("answer Incorrect");
 				_player.hp--;
 				this.answer = null;
 			}
-      console.log(this.monsterHP);
-      console.log(_player.hp);
       if(this.monsterHP === 0) {
         _playerWin = true;
       }
@@ -120,8 +127,9 @@ angular.module('mathLandAppApp')
 		},
 		fightMonster: function() {
 			_isFighting = true;
-      var _start = false;
-      var _end = false;
+      _start = false;
+      _end = false;
+      this.monsterHP = 10;
       _initialize();
 		},
 		endFight: function() {

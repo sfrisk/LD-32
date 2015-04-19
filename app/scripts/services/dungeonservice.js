@@ -143,8 +143,13 @@ angular.module('mathLandAppApp')
 		return directions;
 	}
 
+  function _removeFog(x,y){
+    _map[x][y].fog = false;
+  }
+
 	return {
 		initialize: _initialize,
-		getMap: _getMap
+		getMap: _getMap,
+    removeFog: _removeFog
 	};
 });

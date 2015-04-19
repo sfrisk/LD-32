@@ -2,14 +2,11 @@
 
   <div class="sidebar first">
     <div ng-include src="'views/player.html'" ng-controller="PlayerCtrl"></div>
+    <div ng-include src="'views/navigation.html'" ng-controller="NavigationCtrl"></div>
+    <div ng-include src="'views/fight.html'" ng-controller="FightCtrl"></div>
   </div>
 
   <div class="main">
     <div ng-include src="'views/map.html'" ng-controller="MapCtrl"></div>
 
-  </div>
-
-  <div class="sidebar last">
-    <div ng-include src="'views/navigation.html'" ng-controller="NavigationCtrl"></div>
-    <div ng-include src="'views/fight.html'" ng-controller="FightCtrl"></div>
   </div>

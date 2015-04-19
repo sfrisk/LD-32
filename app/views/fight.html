@@ -1,11 +1,17 @@
-<p class="text-center"><button class="fight" ng-click="fightMonster()" ng-disabled="!isMonsterHere()" ng-cloak ng-show="isMonsterHere()">Fight Monster!</button></p>
+<p class="text-center"><button class="fight" ng-click="fightMonster()" ng-disabled="!isMonsterHere()" ng-cloak ng-show="isMonsterHere()">Fight PC!</button></p>
 <div class="overlay" ng-show="isFighting()">
 </div>
 
 <div class="fightWindow" ng-show="isFighting()">
+	<div class="arena" ng-class="{'incorrect': isIncorrect(), 'correct': isAnswer() }" >
+
+		<div class="playerHP"><strong>Bee:</strong> {{getPlayerHP()}} <div class="timer" ng-show="playingGame()"><strong>Time Until Recharge</strong> {{timer}}</div></div>
+		<div class="monsterHP"><strong>Monster:</strong> {{monsterHP}} HP</div>
+	</div>
 	<form name="mathGameForm" ng-submit="checkAnswer()">
-		<p ng-show="playingGame() || noGame()">See how many math problems you can answer correctly in one minute!</p>
-		<p ng-show="playingGame()">{{timer}}</p>
+		<p ng-show="playingGame() || noGame()">Use your magical math powers to defeat the PC!</p>
+		<p ng-show="playingGame() || noGame()">Your spells will need to recharge after one minute, leaving you defenseless! Try to defeat the PC before the timer is up!</p>
+
 		<p ng-show="playingGame()">
 			<labe for="answer">{{variables.x}} {{symbol}} {{variables.y}}</label>
 			<input type="text" id="answer" ng-model="answer" placeholder="Answer" />
@@ -14,7 +20,10 @@
 		<p ng-show="endGame() && isPlayerWin() && !isPlayerLoss()">Monster Defeated!</p>
 		<p ng-show="endGame() && !isPlayerWin() && isPlayerLoss()">Player Defeated!</p>
 		<p class="text-center" ng-show="noGame()">
-			<button type="button" ng-click="startGame()" class="btn btn-primary btn-lg">Begin Fight</button>
+			<button type="button" ng-click="startGame()">Begin Fight</button>
+		</p>
+		<p ng-show="endGame() && !isPlayerWin() && !isPlayerLoss()">
+			<button type="button" ng-click="recharge()">Recharge (-3 HP)</button>
 		</p>
 	</form>
 <button class="fight" ng-show="endGame() && isPlayerWin() && !isPlayerLoss()" ng-click="endFight()">Back to the Dungeon</button>

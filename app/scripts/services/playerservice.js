@@ -11,9 +11,9 @@ angular.module('mathLandAppApp')
   .service('playerService', function () {
     // AngularJS will instantiate a singleton by calling "new" on this function
     var _player = {
-      'name': 'Anita',
+      'name': 'Bee the Monster',
       'hp': 10,
-      'xp':     0,
+      'xp': 0,
       'location': null,
       'start': null
     };
