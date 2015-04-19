@@ -1,34 +1,69 @@
 html {
 	box-sizing: border-box;
+  background: black;
 }
 *, *:before, *:after {
 	box-sizing: inherit;
 }
 
-.map {
-	width: 606px;
-	margin: 100px auto;
-	.row {
-		clear:both;
-		.room3{
-			width: 200px;
-			margin: 1px;
-			background: #eee;
-			float: left;
-			height: 200px;
-			border: 1px solid #333333;
-			position: relative;
+.row {
+  clear:both;
 
-      .fog {
-        height: 202px;
-        width: 202px;
-        position: absolute;
-        top: -1px;
-        left: -1px;
-        background: #333;
-        z-index: 100;
-      }
-		}
+  &:after{
+    content: '';
+    display: block;
+    clear:both;
+  }
+}
+
+.container {
+  width: 900px;
+  margin: 10px auto;
+}
+
+.sidebar {
+  width: 220px;
+  float: left;
+  min-height: 20px;
+
+  &.first {
+    padding-right: 20px;
+  }
+
+  &.last {
+    padding-left: 20px;
+  }
+}
+
+.main {
+  width: 460px;
+  float:left;
+  min-height: 20px;
+}
+
+.map {
+	margin: 1em auto;
+
+
+	.room3{
+		width: 150px;
+		margin: 1px;
+		background: #eee;
+		float: left;
+		height: 150px;
+		border: 1px solid #333333;
+		position: relative;
+
+    .fog {
+      height: 152px;
+      width: 152px;
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      background: #333;
+      z-index: 100;
+    }
+
 		.north {
 			width: 50px;
 			height: 6px;
@@ -86,16 +121,23 @@ html {
 	}
 }
 
+.navigation {
+  text-align: center;
+
+  p {
+    margin-top: 5px;
+  }
+}
+
 .nav {
 	background: #6c4282;
 	color: #fff;
 	font-weight: bold;
-	font-size: 50px;
-	line-height: 60px;
-	width: 60px;
-	height: 60px;
+	font-size: 30px;
+	line-height: 40px;
+	width: 40px;
+	height: 40px;
 	border: 0;
-	position: fixed;
 	cursor: pointer;
 
 	&:disabled {
@@ -104,26 +146,68 @@ html {
 	}
 
 	&.north {
-		top: 0;
-		left: 50%;
-		margin-left: -30px;
+
 	}
 
 	&.south {
-		bottom: 0;
-		left: 50%;
-		margin-left: -30px;
+
 	}
 
 	&.east {
-		top: 50%;
-		right: 0;
-		margin-top: -30px;
+
 	}
 
 	&.west {
-		top: 50%;
-		left: 0;
-		margin-top: -30px;
+
 	}
+}
+
+.fight {
+  font-size: 20px;
+  line-height: 20px;
+  font-weight: bold;
+  color: #fff;
+  background: #27abd6;
+  border: 0;
+  padding: 5px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+p {
+  margin: .5em 0 0 0;
+}
+
+.overlay {
+  position:fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+}
+
+.fightWindow {
+  width: 800px;
+  height: 400px;
+  position: fixed;
+  z-index: 1000;
+  top: 50%;
+  margin-top: -200px;
+  left: 50%;
+  margin-left: -400px;
+  background: #fff;
+}
+
+.player {
+  color: #fff;
+
+
+  .avatar {
+    background: #6c4282;
+    height: 200px;
+  }
 }

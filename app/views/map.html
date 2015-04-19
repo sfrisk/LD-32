@@ -8,10 +8,7 @@
 			<div class="east" ng-cloak ng-show="getEast(x,y)"></div>
 			<div class="fog" ng-cloak ng-show="isFog(x,y)"></div>
 			<div class="monster" ng-cloak ng-show="isMonster(x,y)">M</div>
+			<div class="kitten" ng-cloak ng-show="isKitten(x,y)">K</div>
 			</div>
 	</div>
 <div>
-<button class="nav north" ng-click="moveNorth()" ng-disabled="!canMoveNorth()">&#65514;</button>
-<button class="nav south" ng-click="moveSouth()" ng-disabled="!canMoveSouth()">&#65516;</button>
-<button class="nav west" ng-click="moveWest()" ng-disabled="!canMoveWest()">&#65513;</button>
-<button class="nav east" ng-click="moveEast()" ng-disabled="!canMoveEast()">&#65515;</button>

@@ -1,0 +1,21 @@
+<p class="text-center"><button class="fight" ng-click="fightMonster()" ng-disabled="!isMonsterHere()" ng-cloak ng-show="isMonsterHere()">Fight Monster!</button></p>
+<div class="overlay" ng-show="isFighting()">
+</div>
+
+<div class="fightWindow" ng-show="isFighting()">
+	<form name="mathGameForm" ng-submit="checkAnswer()">
+		<p ng-show="playingGame() || noGame()">See how many math problems you can answer correctly in one minute!</p>
+		<p ng-show="playingGame()">{{timer}}</p>
+		<p ng-show="playingGame()">
+			<labe for="answer">{{variables.x}} {{symbol}} {{variables.y}}</label>
+			<input type="text" id="answer" ng-model="answer" placeholder="Answer" />
+		</p>
+		<p ng-show="endGame() && !isPlayerWin() && !isPlayerLoss()">Time is up!</p>
+		<p ng-show="endGame() && isPlayerWin() && !isPlayerLoss()">Monster Defeated!</p>
+		<p ng-show="endGame() && !isPlayerWin() && isPlayerLoss()">Player Defeated!</p>
+		<p class="text-center" ng-show="noGame()">
+			<button type="button" ng-click="startGame()" class="btn btn-primary btn-lg">Begin Fight</button>
+		</p>
+	</form>
+<button class="fight" ng-show="endGame() && isPlayerWin() && !isPlayerLoss()" ng-click="endFight()">Back to the Dungeon</button>
+</div>

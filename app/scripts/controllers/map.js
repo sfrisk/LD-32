@@ -13,25 +13,33 @@ angular.module('mathLandAppApp')
 		var width = 3;
 		var height = 3;
 		var _player = null;
+    var _isFighting = false;
 
 		function _initialize() {
 			_map = dungeonService.initialize(width,height);
 			playerService.setPlayerLocation(width-1,height-1);
-			_player = playerService.getPlayerLocation();
-      _map[width-1][height-1].fog = false;
+			_player = playerService.getPlayer();
+			_map[width-1][height-1].fog = false;
 		}
 
 		$scope.isPlayerHere = function(x,y) {
-			return _player[0] == x && _player[1] == y;
+			return _player.location[0] == x && _player.location[1] == y;
 		}
 
-    $scope.isFog = function(x,y) {
-      return _map[x][y].fog == true;
+		$scope.isFog = function(x,y) {
+			return _map[x][y].fog == true;
+		}
+
+		$scope.isMonster = function(x,y) {
+			return _map[x][y].monster == true;
+		}
+
+    $scope.isKitten = function(x,y) {
+      return _map[x][y].kitten == true;
     }
 
-    $scope.isMonster = function(x,y) {
-      return _map[x][y].monster == true;
-    }
+
+
 
 		$scope.getXCount = function() {
 			var x;
@@ -79,53 +87,7 @@ angular.module('mathLandAppApp')
 			return _map[x][y].south;
 		}
 
-    $scope.canMoveNorth = function() {
-      return $scope.getNorth(_player[0], _player[1]) == true
-      && ( ( $scope.isFog(_player[0],_player[1]-1) && !$scope.isMonster(_player[0], _player[1]) )
-      || !$scope.isFog(_player[0],_player[1]-1) );
-    }
 
-    $scope.canMoveSouth = function() {
-      return $scope.getSouth(_player[0], _player[1]) == true
-        && ( ($scope.isFog(_player[0],_player[1]+1) && !$scope.isMonster(_player[0], _player[1]) )
-        || !$scope.isFog(_player[0],_player[1]+1) );
-    }
-
-    $scope.canMoveEast = function() {
-      return $scope.getEast(_player[0], _player[1]) == true
-      && ( ($scope.isFog(_player[0]+1,_player[1]) && !$scope.isMonster(_player[0], _player[1]) )
-      || !$scope.isFog(_player[0]+1,_player[1]) );
-    }
-
-    $scope.canMoveWest = function() {
-      return $scope.getWest(_player[0], _player[1]) == true
-      && ( ($scope.isFog(_player[0]-1,_player[1]) && !$scope.isMonster(_player[0], _player[1]) )
-      || !$scope.isFog(_player[0]-1,_player[1]) );
-    }
-
-    $scope.moveWest = function() {
-      playerService.setPlayerLocation(_player[0]-1,_player[1]);
-      _player = playerService.getPlayerLocation();
-      _map[_player[0]][_player[1]].fog = false;
-    }
-
-    $scope.moveEast = function() {
-      playerService.setPlayerLocation(_player[0]+1,_player[1]);
-      _player = playerService.getPlayerLocation();
-      _map[_player[0]][_player[1]].fog = false;
-    }
-
-    $scope.moveSouth = function() {
-      playerService.setPlayerLocation(_player[0],_player[1]+1);
-      _player = playerService.getPlayerLocation();
-      _map[_player[0]][_player[1]].fog = false;
-    }
-
-    $scope.moveNorth = function() {
-      playerService.setPlayerLocation(_player[0],_player[1]-1);
-      _player = playerService.getPlayerLocation();
-      _map[_player[0]][_player[1]].fog = false;
-    }
 
 
 		_initialize();
