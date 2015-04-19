@@ -20,7 +20,6 @@ angular.module('mathLandAppApp')
 	function _initialize(x,y) {
     _generateEmptyMap(x,y);
 		_generateMap(x,y);
-    return _map;
 	}
 
 	function _getMap() {
@@ -147,9 +146,44 @@ angular.module('mathLandAppApp')
     _map[x][y].fog = false;
   }
 
+  function _isFog(x,y) {
+    return _map[x][y].fog === true;
+  }
+
+  function _isMonster(x,y){
+    return _map[x][y].monster === true;
+  }
+
+  function _getRoom(x,y) {
+    return _map[x][y];
+  }
+
+  function _getNorth(x,y) {
+    return _map[x][y].north;
+  }
+
+  function _getSouth(x,y) {
+    return _map[x][y].south;
+  }
+
+  function _getEast(x,y) {
+    return _map[x][y].east;
+  }
+
+  function _getWest(x,y) {
+    return _map[x][y].west;
+  }
+
 	return {
 		initialize: _initialize,
 		getMap: _getMap,
-    removeFog: _removeFog
+    removeFog: _removeFog,
+    isFog: _isFog,
+    isMonster: _isMonster,
+    getRoom: _getRoom,
+    getNorth: _getNorth,
+    getSouth: _getSouth,
+    getEast: _getEast,
+    getWest: _getWest
 	};
 });

@@ -10,3 +10,32 @@
     <div ng-include src="'views/map.html'" ng-controller="MapCtrl"></div>
 
   </div>
+
+
+  <div class="overlay" ng-show="isOverlay()">
+  </div>
+
+  <div class="modal" ng-show="isBeginning()">
+    <p>
+      Player Characters (PCs) are harassing Bee's friend Frank, and have invaded his home.  Help defeat the Player Characters and free Frank!
+    </p>
+    <p><button ng-click="start()">Rescue Frank!</p>
+  </div>
+
+  <div class="modal" ng-show="isEndOfLevel()">
+    <p>
+      You have rescued Frank!
+    </p>
+    <p>
+      <button ng-click="restart()">Save Frank Again?</p>
+    </p>
+  </div>
+
+  <div class="modal" ng-show="playerDeath()">
+    <p>
+      You have failed to rescue Frank!
+    </p>
+    <p>
+      <button ng-click="cleanRestart()">Try Again?</p>
+    </p>
+  </div>

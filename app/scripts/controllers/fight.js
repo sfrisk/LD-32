@@ -112,7 +112,7 @@ angular.module('mathLandAppApp')
         _playerWin = true;
       }
       if(_player.hp === 0) {
-        _playerLoss = true;
+        _isFighting = false;
       }
 
 		},

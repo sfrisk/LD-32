@@ -17,27 +17,24 @@ angular.module('mathLandAppApp')
 		function _initialize() {
 			_map = dungeonService.getMap();
 			_player = playerService.getPlayer();
-			_map[width-1][height-1].fog = false;
+      
 		}
 
 		$scope.isPlayerHere = function(x,y) {
-			return _player.location[0] === x && _player.location[1] === y;
+      return playerService.isPlayerHere(x,y);
 		};
 
 		$scope.isFog = function(x,y) {
-			return _map[x][y].fog === true;
+			return dungeonService.isFog(x,y)
 		};
 
 		$scope.isMonster = function(x,y) {
-			return _map[x][y].monster === true;
+      return dungeonService.isMonster(x,y);
 		};
 
     $scope.isKitten = function(x,y) {
       return _map[x][y].kitten === true;
     };
-
-
-
 
 		$scope.getXCount = function() {
 			var x;
@@ -66,23 +63,23 @@ angular.module('mathLandAppApp')
 		};
 
 		$scope.getRoom = function(x,y) {
-			return _map[x][y];
+			return dungeonService.getRoom(x,y);
 		};
 
 		$scope.getNorth = function(x,y) {
-			return _map[x][y].north;
+			return dungeonService.getNorth(x,y);
 		};
 
 		$scope.getEast = function(x,y) {
-			return _map[x][y].east;
+			return dungeonService.getEast(x,y);
 		};
 
 		$scope.getWest = function(x,y) {
-			return _map[x][y].west;
+			return dungeonService.getWest(x,y);
 		};
 
 		$scope.getSouth = function(x,y) {
-			return _map[x][y].south;
+			return dungeonService.getSouth(x,y);
 		};
 
 

@@ -34,18 +34,6 @@ angular.module('mathLandAppApp')
       return _player.start;
     }
 
-    // function _getPlayerName() {
-    //   return _player.name;
-    // }
-    //
-    // function _updateXP(xp) {
-    //   return _player.xp + xp;
-    // }
-    //
-    // function _updateHealth(health) {
-    //   return _player.health + health;
-    // }
-
     function _getPlayer() {
       return _player;
     }
@@ -54,13 +42,30 @@ angular.module('mathLandAppApp')
       _player = player;
     }
 
+    function _getHP() {
+      return _player.hp;
+    }
+
+    function _resetPlayer() {
+      _player.hp = 10;
+      _player.xp = 0;
+    }
+
+    function _isPlayerHere(x,y) {
+      return _player.location[0] === x && _player.location[1] === y;
+    }
+    
+
     return {
       setPlayerLocation: _setPlayerLocation,
       getPlayerLocation: _getPlayerLocation,
       setStartingLocation: _setStartingLocation,
       getStartingLocation: _getStartingLocation,
       getPlayer: _getPlayer,
-      updatePlayer: _updatePlayer
+      updatePlayer: _updatePlayer,
+      getHP: _getHP,
+      resetPlayer: _resetPlayer,
+      isPlayerHere: _isPlayerHere
     };
 
   });
