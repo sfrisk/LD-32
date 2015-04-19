@@ -17,24 +17,24 @@ angular.module('mathLandAppApp')
 		function _initialize() {
 			_map = dungeonService.getMap();
 			_player = playerService.getPlayer();
-      
+
 		}
 
 		$scope.isPlayerHere = function(x,y) {
-      return playerService.isPlayerHere(x,y);
+			return playerService.isPlayerHere(x,y);
 		};
 
 		$scope.isFog = function(x,y) {
-			return dungeonService.isFog(x,y)
+			return dungeonService.isFog(x,y);
 		};
 
 		$scope.isMonster = function(x,y) {
-      return dungeonService.isMonster(x,y);
+			return dungeonService.isMonster(x,y);
 		};
 
-    $scope.isKitten = function(x,y) {
-      return _map[x][y].kitten === true;
-    };
+		$scope.isKitten = function(x,y) {
+			return _map[x][y].kitten === true;
+		};
 
 		$scope.getXCount = function() {
 			var x;

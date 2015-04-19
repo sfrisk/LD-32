@@ -8,47 +8,47 @@
  * Controller of the mathLandAppApp
  */
 angular.module('mathLandAppApp')
-  .controller('MainCtrl', function ($scope, dungeonService, playerService) {
-      var width = 3;
-      var height = 3;
-      var _begin = true;
+	.controller('MainCtrl', function ($scope, dungeonService, playerService) {
+			var width = 3;
+			var height = 3;
+			var _begin = true;
 
 
-      function _newLevel() {
-        dungeonService.initialize(width,height);
-        playerService.setPlayerLocation(width-1,height-1);
-        dungeonService.removeFog(width-1, height-1);
-      }
+			function _newLevel() {
+				dungeonService.initialize(width,height);
+				playerService.setPlayerLocation(width-1,height-1);
+				dungeonService.removeFog(width-1, height-1);
+			}
 
-      angular.extend($scope, {
-        isOverlay: function(){
-          return this.isBeginning() || this.isEndOfLevel() || this.playerDeath();
-        },
-        isBeginning: function() {
-          return _begin === true;
-        },
-        isEndOfLevel: function() {
-          return playerService.getPlayerLocation()[0] === 0 && playerService.getPlayerLocation()[1] === 0 &&  dungeonService.isMonster(0,0) === false;
-        },
-        start: function() {
-          _begin = false;
-        },
+			angular.extend($scope, {
+				isOverlay: function(){
+					return this.isBeginning() || this.isEndOfLevel() || this.playerDeath();
+				},
+				isBeginning: function() {
+					return _begin === true;
+				},
+				isEndOfLevel: function() {
+					return playerService.getPlayerLocation()[0] === 0 && playerService.getPlayerLocation()[1] === 0 &&	dungeonService.isMonster(0,0) === false;
+				},
+				start: function() {
+					_begin = false;
+				},
 
-        restart: function() {
-          _newLevel();
-        },
+				restart: function() {
+					_newLevel();
+				},
 
-        playerDeath: function() {
-          return playerService.getHP() === 0;
-        },
+				playerDeath: function() {
+					return playerService.getHP() === 0;
+				},
 
-        cleanRestart: function() {
-          playerService.resetPlayer();
-          _newLevel();
-        }
+				cleanRestart: function() {
+					playerService.resetPlayer();
+					_newLevel();
+				}
 
-      });
+			});
 
-      _newLevel();
+			_newLevel();
 
-  });
+	});

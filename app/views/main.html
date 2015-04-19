@@ -15,27 +15,30 @@
   <div class="overlay" ng-show="isOverlay()">
   </div>
 
-  <div class="modal" ng-show="isBeginning()">
+  <aside class="modal" ng-show="isBeginning()">
+    <h1>Math Quest!</h1>
     <p>
-      Player Characters (PCs) are harassing Bee's friend Frank, and have invaded his home.  Help defeat the Player Characters and free Frank!
+      Player Characters attacking Bee's friend, Frank the Lich.  Help defeat the Player Characters and rescue Frank!
     </p>
-    <p><button ng-click="start()">Rescue Frank!</p>
-  </div>
+    <p><button ng-click="start()">Help Frank</p>
+  </aside>
 
-  <div class="modal" ng-show="isEndOfLevel()">
+  <aside class="modal" ng-show="isEndOfLevel()">
+    <h1>Victory!</h1>
     <p>
       You have rescued Frank!
     </p>
     <p>
       <button ng-click="restart()">Save Frank Again?</p>
     </p>
-  </div>
+  </aside>
 
-  <div class="modal" ng-show="playerDeath()">
+  <aside class="modal" ng-show="playerDeath()">
+    <h1>Out of Health!</h1>
     <p>
       You have failed to rescue Frank!
     </p>
     <p>
       <button ng-click="cleanRestart()">Try Again?</p>
     </p>
-  </div>
+  </aside>

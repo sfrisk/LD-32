@@ -1,30 +1,36 @@
-<p class="text-center"><button class="fight" ng-click="fightMonster()" ng-disabled="!isMonsterHere()" ng-cloak ng-show="isMonsterHere()">Fight PC!</button></p>
+<p class="text-center"><button class="fight" ng-click="fightMonster()" ng-disabled="!isMonsterHere()" ng-cloak ng-show="isMonsterHere()">Fight!</button></p>
 <div class="overlay" ng-show="isFighting()">
 </div>
 
-<div class="fightWindow" ng-show="isFighting()">
-	<div class="arena" ng-class="{'incorrect': isIncorrect(), 'correct': isAnswer() }" >
+<aside class="fightWindow" ng-show="isFighting()">
+	<div class="arena" ng-class="{'incorrect': isIncorrect()}" >
 
-		<div class="playerHP"><strong>Bee:</strong> {{getPlayerHP()}} <div class="timer" ng-show="playingGame()"><strong>Time Until Recharge</strong> {{timer}}</div></div>
-		<div class="monsterHP"><strong>Monster:</strong> {{monsterHP}} HP</div>
+		<div class="playerHP"><strong>Bee the Monster:</strong> {{getPlayerHP()}} HP<div class="timer" ng-show="playingGame()"><strong>Time Until Recharge</strong> {{timer}} Seconds</div></div>
+		<div class="monsterHP"><strong>Player Character:</strong> {{monsterHP}} HP</div>
+		<img src="../images/bee.png" class="bee" ng-show="getPlayerHP() > 0">
+		<img src="../images/pc.png" class="pc" ng-show="monsterHP > 0">
 	</div>
 	<form name="mathGameForm" ng-submit="checkAnswer()">
-		<p ng-show="playingGame() || noGame()">Use your magical math powers to defeat the PC!</p>
-		<p ng-show="playingGame() || noGame()">Your spells will need to recharge after one minute, leaving you defenseless! Try to defeat the PC before the timer is up!</p>
 
-		<p ng-show="playingGame()">
-			<labe for="answer">{{variables.x}} {{symbol}} {{variables.y}}</label>
+		<p ng-show="playingGame()" class="text-center">
+			<label for="answer">{{variables.x}} {{symbol}} {{variables.y}}</label>
 			<input type="text" id="answer" ng-model="answer" placeholder="Answer" />
 		</p>
-		<p ng-show="endGame() && !isPlayerWin() && !isPlayerLoss()">Time is up!</p>
-		<p ng-show="endGame() && isPlayerWin() && !isPlayerLoss()">Monster Defeated!</p>
-		<p ng-show="endGame() && !isPlayerWin() && isPlayerLoss()">Player Defeated!</p>
-		<p class="text-center" ng-show="noGame()">
-			<button type="button" ng-click="startGame()">Begin Fight</button>
-		</p>
-		<p ng-show="endGame() && !isPlayerWin() && !isPlayerLoss()">
-			<button type="button" ng-click="recharge()">Recharge (-3 HP)</button>
-		</p>
+
 	</form>
-<button class="fight" ng-show="endGame() && isPlayerWin() && !isPlayerLoss()" ng-click="endFight()">Back to the Dungeon</button>
-</div>
+	<p ng-show="noGame()" class="text-center" >Use your Mathmatical Spells to defeat the PC!</p>
+	<p ng-show="noGame()" class="text-center" >Your spells will need to recharge after 35 seconds, leaving you defenseless!</p>
+
+	<h1 ng-show="endGame() && !isPlayerWin() && !isPlayerLoss()" class="text-center" >Time is up!</h1>
+	<h1 ng-show="endGame() && isPlayerWin() && !isPlayerLoss()" class="text-center" >Monster Defeated!</h1>
+	<p class="text-center" ng-show="noGame()">
+		<button type="button" ng-click="startGame()">Begin Fight</button>
+	</p>
+	<p class="text-center"  ng-show="endGame() && !isPlayerWin() && !isPlayerLoss()">
+		<button type="button" ng-click="recharge()">Recharge (-3 HP)</button>
+	</p>
+	<p class="text-center" ng-show="endGame() && isPlayerWin() && !isPlayerLoss()">
+		<button class="fight" ng-click="endFight()">Back to the Dungeon</button>
+	</p>
+
+</aside>

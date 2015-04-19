@@ -17,13 +17,13 @@ angular.module('mathLandAppApp')
 	var _answer = null;
 	var _answerCorrect = null;
 	var _sym = ['-','+','÷','x'];
-  var _playerLoss = false;
-  var _playerWin = false;
+	var _playerLoss = false;
+	var _playerWin = false;
 
 	$scope.variables = {};
 	$scope.monsterHP = 10;
-	$scope.timer = 0;
-  $scope.answer = null;
+	$scope.timer = 35;
+	$scope.answer = null;
 
 	function _initialize() {
 		$scope.variables = {
@@ -52,13 +52,13 @@ angular.module('mathLandAppApp')
 	}
 
 	angular.extend($scope, {
-    recharge: function() {
-      _player.hp = _player.hp - 3;
-      this.startGame();
-    },
-    getPlayerHP: function() {
-      return _player.hp;
-    },
+		recharge: function() {
+			_player.hp = _player.hp - 3;
+			this.startGame();
+		},
+		getPlayerHP: function() {
+			return _player.hp;
+		},
 		isAnswer: function (){
 			return _answerCorrect === true;
 		},
@@ -71,17 +71,17 @@ angular.module('mathLandAppApp')
 		startGame: function(){
 			_start = true;
 			_end = false;
-      _playerLoss = false;
-      _playerWin = false;
-      if (this.monsterHP == 0) {
-        this.monsterHP = 10;
-      } else if (this.monsterHP != 10) {
-        this.monsterHP += 3;
-      }
+			_playerLoss = false;
+			_playerWin = false;
+			if (this.monsterHP === 0) {
+				this.monsterHP = 10;
+			} else if (this.monsterHP !== 10) {
+				this.monsterHP += 3;
+			}
 			$scope.correct = 0;
 			$scope.wrong = 0;
-			$scope.timer = 0;
-			$timeout($scope.increaseTimer, 1000);
+			$scope.timer = 35;
+			$timeout($scope.timerCountdown, 1000);
 		},
 		playingGame: function(){
 			return _start && !_end;
@@ -89,48 +89,52 @@ angular.module('mathLandAppApp')
 		endGame: function() {
 			return _start && _end;
 		},
-		increaseTimer: function(){
-			$scope.timer++;
-			if($scope.timer === 60 || _playerLoss || _playerWin){
+		timerCountdown: function(){
+			$scope.timer--;
+			if($scope.timer === 0 || _playerLoss || _playerWin){
 				_end = true;
 			} else {
-				$timeout($scope.increaseTimer, 1000);
+				$timeout($scope.timerCountdown, 1000);
 			}
 		},
 		checkAnswer: function(){
 			_answerCorrect = parseInt(this.answer) === _answer;
 			if(_answerCorrect) {
 				this.monsterHP--;
-        _player.xp++;
-				_initialize();
-        this.answer = null;
+				_player.xp++;
 			}else{
 				_player.hp--;
 				this.answer = null;
 			}
-      if(this.monsterHP === 0) {
-        _playerWin = true;
-      }
-      if(_player.hp === 0) {
-        _isFighting = false;
-      }
+
+			if(this.monsterHP === 0) {
+				_playerWin = true;
+			}
+			if(_player.hp === 0) {
+				_isFighting = false;
+			}
+
+			if(_answerCorrect) {
+				_initialize();
+				this.answer = null;
+			}
 
 		},
-    isPlayerWin: function() {
-      return _playerWin;
-    },
-    isPlayerLoss: function() {
-      return _playerLoss;
-    },
+		isPlayerWin: function() {
+			return _playerWin;
+		},
+		isPlayerLoss: function() {
+			return _playerLoss;
+		},
 		isMonsterHere: function() {
 			return _map[_player.location[0]][_player.location[1]].monster === true;
 		},
 		fightMonster: function() {
 			_isFighting = true;
-      _start = false;
-      _end = false;
-      this.monsterHP = 10;
-      _initialize();
+			_start = false;
+			_end = false;
+			this.monsterHP = 10;
+			_initialize();
 		},
 		endFight: function() {
 			_map[_player.location[0]][_player.location[1]].monster = false;
