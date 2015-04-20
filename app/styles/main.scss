@@ -134,6 +134,16 @@ html {
 			margin-left: -13px;
 			position: absolute;
 		}
+
+    .frank {
+      background: url(../images/frank.png);
+      width: 70px;
+      height: 70px;
+      top: 10%;
+      right: 10%;
+      margin-left: -13px;
+      position: absolute;
+    }
 	}
 }
 
@@ -295,12 +305,18 @@ p {
     position: absolute;
     top: 30px;
     left: 50px;
+    width: 300px;
+    height: 300px;
+    background: url(../images/bee.png);
   }
 
   .pc {
     position: absolute;
     bottom: 54px;
     right: 0px;
+    width: 400px;
+    height: 300px;
+    background: url(../images/pc.png);
   }
 }
 
@@ -350,7 +366,7 @@ border: 2px solid black;
 .modal {
 	background: #f3e8db;
 	color: #403b32;
-	height: 350px;
+	min-height: 350px;
 	width: 500px;
 	position: fixed;
 	top: 100px;
@@ -374,4 +390,9 @@ border: 2px solid black;
 		font-family: 'Chelsea Market', cursive;
 
 	}
+
+  .win {
+    height: 300px;
+    background: url(../images/win.png);
+  }
 }

@@ -7,8 +7,8 @@
 
 		<div class="playerHP"><strong>Bee the Monster:</strong> {{getPlayerHP()}} HP<div class="timer" ng-show="playingGame()"><strong>Time Until Recharge</strong> {{timer}} Seconds</div></div>
 		<div class="monsterHP"><strong>Player Character:</strong> {{monsterHP}} HP</div>
-		<img src="../images/bee.png" class="bee" ng-show="getPlayerHP() > 0">
-		<img src="../images/pc.png" class="pc" ng-show="monsterHP > 0">
+		<div  class="bee" ng-show="getPlayerHP() > 0"></div>
+		<div  class="pc" ng-show="monsterHP > 0"></div>
 	</div>
 	<form name="mathGameForm" ng-submit="checkAnswer()">
 
@@ -19,10 +19,10 @@
 
 	</form>
 	<p ng-show="noGame()" class="text-center" >Use your Mathmatical Spells to defeat the PC!</p>
-	<p ng-show="noGame()" class="text-center" >Your spells will need to recharge after 35 seconds, leaving you defenseless!</p>
+	<p ng-show="noGame()" class="text-center" >Your spells will need to recharge after 35 seconds, leaving you defenseless, so beat the PC quickly!</p>
 
 	<h1 ng-show="endGame() && !isPlayerWin() && !isPlayerLoss()" class="text-center" >Time is up!</h1>
-	<h1 ng-show="endGame() && isPlayerWin() && !isPlayerLoss()" class="text-center" >Monster Defeated!</h1>
+	<h1 ng-show="endGame() && isPlayerWin() && !isPlayerLoss()" class="text-center" >PC Defeated!</h1>
 	<p class="text-center" ng-show="noGame()">
 		<button type="button" ng-click="startGame()">Begin Fight</button>
 	</p>
